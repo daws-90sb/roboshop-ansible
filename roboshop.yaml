@@ -76,3 +76,10 @@
     when: 
     - action == "delete" 
     - item == "frontend"  
+
+    - name: delete ec2 insatnces
+      amazon.aws.ec2_instance:
+        state: abesent
+        name: "roboshop-{{ item }}"
+      loop: "{{ instances }}"
+      when: action == "delete" 
