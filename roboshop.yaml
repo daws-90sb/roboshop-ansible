@@ -2,7 +2,7 @@
   hosts: local
   connection: local
   vars:
-   instances: ["mongodb","redis", "mysql", "rabbitmq"]
+   instances: ["mongodb","redis","mysql","rabbitmq"]
    image_id: ami-0220d79f3f480ecf5
    domain_name: daws-90sb.online
   tasks:
@@ -35,7 +35,7 @@
      ttl: 1
      value: "{{item.instances[0].private_ip_address}}"
      overwrite: true
-     loop: "{{ ec2_output.results }}"
+    loop: "{{ ec2_output.results }}"
      #when: item.item != "frontend"
 
   - name: create route53 record for frontend
@@ -47,5 +47,5 @@
      ttl: 1
      value: "{{item.instances[0].public_ip_address}}"
      overwrite: true
-     loop: "{{ ec2_output.results }}"
-     when: item.item == "frontend"
+    loop: "{{ ec2_output.results }}"
+    when: item.item == "frontend"
