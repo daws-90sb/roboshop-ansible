@@ -59,10 +59,20 @@
   - name: print catalogue_output
     debug:
       msg:  "{{ catalogue_output }}"
-    tags:
+    tags: # if we want to execute that particular command then we need to give tags so that only that particular block will get executed
      - mongodb
-  - name: load products
+  - name: load products # when there is no idempotency we need to give like below shell commands
     shell: mongosh --host "{{ MONGODB_HOST }}" </app/db/master-data.js
     when: catalogue_output.stdout | int < 0
     tags:
      - mongodb
+  - name: deamon reload
+    systemd_service:
+      name: catalogue
+      daemon_reload: true
+    when: unit_file.changed
+  - name: enable and start catalogue
+    service:
+      name: catalogue
+      state: restarted
+      enabled: yes
