@@ -29,8 +29,8 @@
       state: directory
   - name: download user code
     get_url:
-       src:  https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip
-       dest:  /tmp/user.zip
+       src: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip
+       dest: /tmp/user.zip
   - name: unzip user
     unarchive:
        src: /tmp/user.zip
