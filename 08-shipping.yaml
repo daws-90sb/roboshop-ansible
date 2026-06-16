@@ -51,11 +51,11 @@
        dest: /etc/systemd/system/shipping.service
   - name: load mysql data
     ansible.mysql.mysql_db:
-    state: import
-    name: all
-    login_user: root
-    login_password: Roboshop@1
-    login_host: "{{ MYSQL_HOST }}" # the username and password will conenct to this host nad then it will load below script files
+     state: import
+     name: all
+     login_user: root
+     login_password: Roboshop@1
+     login_host: "{{ MYSQL_HOST }}" # the username and password will conenct to this host nad then it will load below script files
     target:
   loop:
   - /app/db/schema.sql
