@@ -58,10 +58,19 @@
       state: import
       name: all
       login_user: root
-      login_password: Roboshop@1
+      login_password: RoboShop@1
       login_host: "{{ MYSQL_HOST }}" # the username and password will conenct to this host nad then it will load below script files
       target: "{{ item }}"
     loop:
     - /app/db/schema.sql
     - /app/db/app-user.sql
     - /app/db/master-data.sql
+  - name: deamon reload
+    systemd_service:
+      name: shipping
+      daemon_reload: true
+  - name: enable and start shipping
+    service:
+      name: shipping
+      state: restarted
+      enabled: yes
