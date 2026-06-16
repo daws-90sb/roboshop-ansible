@@ -49,6 +49,10 @@
     template:
        src: shipping.service.j2 # this is the template which will run in runtime asible will search for service file in run time...ansible executes the variable assigned in service template in run time 
        dest: /etc/systemd/system/shipping.service
+  - name: Install python dependencies
+    pip:
+      name: PyMySql
+      executable: pip3.9
   - name: load mysql data
     community.mysql.mysql_db:
       state: import
