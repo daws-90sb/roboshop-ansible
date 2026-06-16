@@ -56,8 +56,8 @@
      login_user: root
      login_password: Roboshop@1
      login_host: "{{ MYSQL_HOST }}" # the username and password will conenct to this host nad then it will load below script files
-    target:
-  loop:
-  - /app/db/schema.sql
-  - /app/db/app-user.sql
-  - /app/db/master-data.sql
+     target:
+    loop:
+    - /app/db/schema.sql
+    - /app/db/app-user.sql
+    - /app/db/master-data.sql
